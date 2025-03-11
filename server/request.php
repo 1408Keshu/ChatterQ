@@ -1,10 +1,24 @@
 <?php
+session_start();
+include('../common/db.php');
 if(isset($_POST['signup'])){
-    // print_r($_POST);
-        echo "User name is ".$_POST['username']."<br>";
-        echo "User email is ".$_POST['email']."<br>";
-        echo "User address is ".$_POST['address']."<br>";
-        echo "User password is ".$_POST['password']."<br>";
-        // echo "Hello this is request server";
+        
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $address = $_POST['address'];
+        $user = $conn->prepare("Insert into `users`
+         (`username`,`email`,`password`,`address`)
+         values('$username','$email','$password','$address');  ");
+
+        $result = $user->execute();
+
+        if($result){
+            echo "New user registered";
+            $_SESSION["user"]=["username"=>$username,"email"=>$email];
+        }
+        else{
+            echo "New user not registered";
+        }
     }
 ?>
