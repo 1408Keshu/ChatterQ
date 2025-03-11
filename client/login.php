@@ -1,4 +1,5 @@
 <div class="container ">
+    <form method="post">
     <h1 class="text-center">Login</h1>
     <form class="row g-3" >
  
