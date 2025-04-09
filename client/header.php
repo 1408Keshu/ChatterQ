@@ -13,11 +13,27 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="./">Home</a>
         </li>
+        <?php
+// session_start(); // Ensure session is started (place this at the top of the file if not already present)
+
+if ( !empty($_SESSION['user']['username'])){ ?>
+    <li class="nav-item">
+        <a class="nav-link" href="./server/request.php?logout=true">Logout</a>
+    </li>
+<?php } ?>
+        <?php 
+          if(empty($_SESSION['user']['username'])){ ?>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="?login=true">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="?signup=true">SignUp</a>
+            </li>
+          <?php } ?>
+
         <li class="nav-item">
-          <a class="nav-link" href="?login=true">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="?signup=true">SignUp</a>
+          <a class="nav-link" href="./client/ask.php">Ask a question</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Category</a>
